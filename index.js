@@ -17,9 +17,11 @@ app.use(compression())
 app.set('view engine', 'pug')
 
 app.get('/', (req, res) => {
-  const site = config.app.site || `${req.protocol}://${req.get('host')}`
-  res.render('index', { site })
+  // const site = config.app.site || `${req.protocol}://${req.get('host')}`
+  // res.render('index', { site })
+  res.redirect(302, 'https://moeyy.cn/count/');
 });
+
 
 // get the image
 app.get('/get/@:name', async (req, res) => {
