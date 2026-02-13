@@ -1,12 +1,14 @@
 FROM node:22-alpine
 
+RUN apk add --no-cache python3 make g++
+
 RUN corepack enable && corepack prepare pnpm@10 --activate
 
 WORKDIR /app
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 COPY . .
 
